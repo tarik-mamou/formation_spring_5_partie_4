@@ -39,42 +39,42 @@ public class Profil implements Serializable {
     }
 
     /**
-     * Getter for <code>PUBLIC.PROFIL.ID</code>.
+     * Getter for <code>public.profil.id</code>.
      */
     public Integer getId() {
         return this.id;
     }
 
     /**
-     * Setter for <code>PUBLIC.PROFIL.ID</code>.
+     * Setter for <code>public.profil.id</code>.
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     * Getter for <code>PUBLIC.PROFIL.DATE_PUBLICATION</code>.
+     * Getter for <code>public.profil.date_publication</code>.
      */
     public LocalDate getDatePublication() {
         return this.datePublication;
     }
 
     /**
-     * Setter for <code>PUBLIC.PROFIL.DATE_PUBLICATION</code>.
+     * Setter for <code>public.profil.date_publication</code>.
      */
     public void setDatePublication(LocalDate datePublication) {
         this.datePublication = datePublication;
     }
 
     /**
-     * Getter for <code>PUBLIC.PROFIL.GENRE</code>.
+     * Getter for <code>public.profil.genre</code>.
      */
     public String getGenre() {
         return this.genre;
     }
 
     /**
-     * Setter for <code>PUBLIC.PROFIL.GENRE</code>.
+     * Setter for <code>public.profil.genre</code>.
      */
     public void setGenre(String genre) {
         this.genre = genre;

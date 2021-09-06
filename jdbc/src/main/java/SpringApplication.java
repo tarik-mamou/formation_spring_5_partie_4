@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class SpringApplication {
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationApplication.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationApplication.class);
         LibrairieService librairieService=context.getBean(LibrairieService.class);
        // System.out.println(librairieService.findLivre());
        //System.out.println(librairieService.findLivre2());

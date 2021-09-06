@@ -13,9 +13,10 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row5;
+import org.jooq.Row7;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -35,7 +36,7 @@ public class Livre extends TableImpl<LivreRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>PUBLIC.LIVRE</code>
+     * The reference instance of <code>public.livre</code>
      */
     public static final Livre LIVRE = new Livre();
 
@@ -48,29 +49,39 @@ public class Livre extends TableImpl<LivreRecord> {
     }
 
     /**
-     * The column <code>PUBLIC.LIVRE.ID</code>.
+     * The column <code>public.livre.id</code>.
      */
-    public final TableField<LivreRecord, Integer> ID = createField(DSL.name("ID"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<LivreRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>PUBLIC.LIVRE.NOM</code>.
+     * The column <code>public.livre.nom</code>.
      */
-    public final TableField<LivreRecord, String> NOM = createField(DSL.name("NOM"), SQLDataType.VARCHAR(64).nullable(false), this, "");
+    public final TableField<LivreRecord, String> NOM = createField(DSL.name("nom"), SQLDataType.VARCHAR(64).nullable(false), this, "");
 
     /**
-     * The column <code>PUBLIC.LIVRE.LANGUE</code>.
+     * The column <code>public.livre.langue</code>.
      */
-    public final TableField<LivreRecord, String> LANGUE = createField(DSL.name("LANGUE"), SQLDataType.VARCHAR(64), this, "");
+    public final TableField<LivreRecord, String> LANGUE = createField(DSL.name("langue"), SQLDataType.VARCHAR(64), this, "");
 
     /**
-     * The column <code>PUBLIC.LIVRE.ID_AUTEUR</code>.
+     * The column <code>public.livre.id_auteur</code>.
      */
-    public final TableField<LivreRecord, Integer> ID_AUTEUR = createField(DSL.name("ID_AUTEUR"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<LivreRecord, Integer> ID_AUTEUR = createField(DSL.name("id_auteur"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>PUBLIC.LIVRE.ID_PROFILE</code>.
+     * The column <code>public.livre.id_profil</code>.
      */
-    public final TableField<LivreRecord, Integer> ID_PROFILE = createField(DSL.name("ID_PROFILE"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<LivreRecord, Integer> ID_PROFIL = createField(DSL.name("id_profil"), SQLDataType.INTEGER.nullable(false), this, "");
+
+    /**
+     * The column <code>public.livre.id_stock</code>.
+     */
+    public final TableField<LivreRecord, Integer> ID_STOCK = createField(DSL.name("id_stock"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
+
+    /**
+     * The column <code>public.livre.prix</code>.
+     */
+    public final TableField<LivreRecord, Integer> PRIX = createField(DSL.name("prix"), SQLDataType.INTEGER.nullable(false), this, "");
 
     private Livre(Name alias, Table<LivreRecord> aliased) {
         this(alias, aliased, null);
@@ -81,24 +92,24 @@ public class Livre extends TableImpl<LivreRecord> {
     }
 
     /**
-     * Create an aliased <code>PUBLIC.LIVRE</code> table reference
+     * Create an aliased <code>public.livre</code> table reference
      */
     public Livre(String alias) {
         this(DSL.name(alias), LIVRE);
     }
 
     /**
-     * Create an aliased <code>PUBLIC.LIVRE</code> table reference
+     * Create an aliased <code>public.livre</code> table reference
      */
     public Livre(Name alias) {
         this(alias, LIVRE);
     }
 
     /**
-     * Create a <code>PUBLIC.LIVRE</code> table reference
+     * Create a <code>public.livre</code> table reference
      */
     public Livre() {
-        this(DSL.name("LIVRE"), null);
+        this(DSL.name("livre"), null);
     }
 
     public <O extends Record> Livre(Table<O> child, ForeignKey<O, LivreRecord> key) {
@@ -111,35 +122,48 @@ public class Livre extends TableImpl<LivreRecord> {
     }
 
     @Override
+    public Identity<LivreRecord, Integer> getIdentity() {
+        return (Identity<LivreRecord, Integer>) super.getIdentity();
+    }
+
+    @Override
     public UniqueKey<LivreRecord> getPrimaryKey() {
-        return Keys.CONSTRAINT_4;
+        return Keys.LIVRE_PKEY;
     }
 
     @Override
     public List<UniqueKey<LivreRecord>> getKeys() {
-        return Arrays.<UniqueKey<LivreRecord>>asList(Keys.CONSTRAINT_4);
+        return Arrays.<UniqueKey<LivreRecord>>asList(Keys.LIVRE_PKEY, Keys.LIVRE_NOM_KEY);
     }
 
     @Override
     public List<ForeignKey<LivreRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<LivreRecord, ?>>asList(Keys.FK_LIVRE_AUTEUR, Keys.FK_LIVRE_PROFILE);
+        return Arrays.<ForeignKey<LivreRecord, ?>>asList(Keys.LIVRE__FK_LIVRE_AUTEUR, Keys.LIVRE__FK_LIVRE_PROFIL, Keys.LIVRE__ID_STOCK);
     }
 
     private transient Auteur _auteur;
     private transient Profil _profil;
+    private transient Stock _stock;
 
     public Auteur auteur() {
         if (_auteur == null)
-            _auteur = new Auteur(this, Keys.FK_LIVRE_AUTEUR);
+            _auteur = new Auteur(this, Keys.LIVRE__FK_LIVRE_AUTEUR);
 
         return _auteur;
     }
 
     public Profil profil() {
         if (_profil == null)
-            _profil = new Profil(this, Keys.FK_LIVRE_PROFILE);
+            _profil = new Profil(this, Keys.LIVRE__FK_LIVRE_PROFIL);
 
         return _profil;
+    }
+
+    public Stock stock() {
+        if (_stock == null)
+            _stock = new Stock(this, Keys.LIVRE__ID_STOCK);
+
+        return _stock;
     }
 
     @Override
@@ -169,11 +193,11 @@ public class Livre extends TableImpl<LivreRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row5 type methods
+    // Row7 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<Integer, String, String, Integer, Integer> fieldsRow() {
-        return (Row5) super.fieldsRow();
+    public Row7<Integer, String, String, Integer, Integer, Integer, Integer> fieldsRow() {
+        return (Row7) super.fieldsRow();
     }
 }

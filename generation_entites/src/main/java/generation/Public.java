@@ -4,9 +4,15 @@
 package generation;
 
 
+import generation.tables.Action;
+import generation.tables.ApplicationUser;
 import generation.tables.Auteur;
 import generation.tables.Livre;
 import generation.tables.Profil;
+import generation.tables.Role;
+import generation.tables.Stock;
+import generation.tables.UserLivre;
+import generation.tables.UserRole;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,30 +31,60 @@ public class Public extends SchemaImpl {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>PUBLIC</code>
+     * The reference instance of <code>public</code>
      */
     public static final Public PUBLIC = new Public();
 
     /**
-     * The table <code>PUBLIC.AUTEUR</code>.
+     * The table <code>public.action</code>.
+     */
+    public final Action ACTION = Action.ACTION;
+
+    /**
+     * The table <code>public.application_user</code>.
+     */
+    public final ApplicationUser APPLICATION_USER = ApplicationUser.APPLICATION_USER;
+
+    /**
+     * The table <code>public.auteur</code>.
      */
     public final Auteur AUTEUR = Auteur.AUTEUR;
 
     /**
-     * The table <code>PUBLIC.LIVRE</code>.
+     * The table <code>public.livre</code>.
      */
     public final Livre LIVRE = Livre.LIVRE;
 
     /**
-     * The table <code>PUBLIC.PROFIL</code>.
+     * The table <code>public.profil</code>.
      */
     public final Profil PROFIL = Profil.PROFIL;
+
+    /**
+     * The table <code>public.role</code>.
+     */
+    public final Role ROLE = Role.ROLE;
+
+    /**
+     * The table <code>public.stock</code>.
+     */
+    public final Stock STOCK = Stock.STOCK;
+
+    /**
+     * The table <code>public.user_livre</code>.
+     */
+    public final UserLivre USER_LIVRE = UserLivre.USER_LIVRE;
+
+    /**
+     * The table <code>public.user_role</code>.
+     */
+    public final UserRole USER_ROLE = UserRole.USER_ROLE;
 
     /**
      * No further instances allowed
      */
     private Public() {
-        super("PUBLIC", null);
+        super("public", null);
     }
 
 
@@ -60,8 +96,14 @@ public class Public extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.<Table<?>>asList(
+            Action.ACTION,
+            ApplicationUser.APPLICATION_USER,
             Auteur.AUTEUR,
             Livre.LIVRE,
-            Profil.PROFIL);
+            Profil.PROFIL,
+            Role.ROLE,
+            Stock.STOCK,
+            UserLivre.USER_LIVRE,
+            UserRole.USER_ROLE);
     }
 }

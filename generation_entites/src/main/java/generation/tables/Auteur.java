@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Row3;
@@ -35,7 +36,7 @@ public class Auteur extends TableImpl<AuteurRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>PUBLIC.AUTEUR</code>
+     * The reference instance of <code>public.auteur</code>
      */
     public static final Auteur AUTEUR = new Auteur();
 
@@ -48,19 +49,19 @@ public class Auteur extends TableImpl<AuteurRecord> {
     }
 
     /**
-     * The column <code>PUBLIC.AUTEUR.ID</code>.
+     * The column <code>public.auteur.id</code>.
      */
-    public final TableField<AuteurRecord, Integer> ID = createField(DSL.name("ID"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<AuteurRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>PUBLIC.AUTEUR.NOM</code>.
+     * The column <code>public.auteur.nom</code>.
      */
-    public final TableField<AuteurRecord, String> NOM = createField(DSL.name("NOM"), SQLDataType.VARCHAR(64).nullable(false), this, "");
+    public final TableField<AuteurRecord, String> NOM = createField(DSL.name("nom"), SQLDataType.VARCHAR(64).nullable(false), this, "");
 
     /**
-     * The column <code>PUBLIC.AUTEUR.PRENOM</code>.
+     * The column <code>public.auteur.prenom</code>.
      */
-    public final TableField<AuteurRecord, String> PRENOM = createField(DSL.name("PRENOM"), SQLDataType.VARCHAR(64), this, "");
+    public final TableField<AuteurRecord, String> PRENOM = createField(DSL.name("prenom"), SQLDataType.VARCHAR(64), this, "");
 
     private Auteur(Name alias, Table<AuteurRecord> aliased) {
         this(alias, aliased, null);
@@ -71,24 +72,24 @@ public class Auteur extends TableImpl<AuteurRecord> {
     }
 
     /**
-     * Create an aliased <code>PUBLIC.AUTEUR</code> table reference
+     * Create an aliased <code>public.auteur</code> table reference
      */
     public Auteur(String alias) {
         this(DSL.name(alias), AUTEUR);
     }
 
     /**
-     * Create an aliased <code>PUBLIC.AUTEUR</code> table reference
+     * Create an aliased <code>public.auteur</code> table reference
      */
     public Auteur(Name alias) {
         this(alias, AUTEUR);
     }
 
     /**
-     * Create a <code>PUBLIC.AUTEUR</code> table reference
+     * Create a <code>public.auteur</code> table reference
      */
     public Auteur() {
-        this(DSL.name("AUTEUR"), null);
+        this(DSL.name("auteur"), null);
     }
 
     public <O extends Record> Auteur(Table<O> child, ForeignKey<O, AuteurRecord> key) {
@@ -101,13 +102,18 @@ public class Auteur extends TableImpl<AuteurRecord> {
     }
 
     @Override
+    public Identity<AuteurRecord, Integer> getIdentity() {
+        return (Identity<AuteurRecord, Integer>) super.getIdentity();
+    }
+
+    @Override
     public UniqueKey<AuteurRecord> getPrimaryKey() {
-        return Keys.CONSTRAINT_7;
+        return Keys.AUTEUR_PKEY;
     }
 
     @Override
     public List<UniqueKey<AuteurRecord>> getKeys() {
-        return Arrays.<UniqueKey<AuteurRecord>>asList(Keys.CONSTRAINT_7);
+        return Arrays.<UniqueKey<AuteurRecord>>asList(Keys.AUTEUR_PKEY);
     }
 
     @Override

@@ -4,12 +4,24 @@
 package generation;
 
 
+import generation.tables.Action;
+import generation.tables.ApplicationUser;
 import generation.tables.Auteur;
 import generation.tables.Livre;
 import generation.tables.Profil;
+import generation.tables.Role;
+import generation.tables.Stock;
+import generation.tables.UserLivre;
+import generation.tables.UserRole;
+import generation.tables.records.ActionRecord;
+import generation.tables.records.ApplicationUserRecord;
 import generation.tables.records.AuteurRecord;
 import generation.tables.records.LivreRecord;
 import generation.tables.records.ProfilRecord;
+import generation.tables.records.RoleRecord;
+import generation.tables.records.StockRecord;
+import generation.tables.records.UserLivreRecord;
+import generation.tables.records.UserRoleRecord;
 
 import org.jooq.ForeignKey;
 import org.jooq.TableField;
@@ -20,7 +32,7 @@ import org.jooq.impl.Internal;
 
 /**
  * A class modelling foreign key relationships and constraints of tables in 
- * PUBLIC.
+ * public.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Keys {
@@ -29,14 +41,24 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<AuteurRecord> CONSTRAINT_7 = Internal.createUniqueKey(Auteur.AUTEUR, DSL.name("CONSTRAINT_7"), new TableField[] { Auteur.AUTEUR.ID }, true);
-    public static final UniqueKey<LivreRecord> CONSTRAINT_4 = Internal.createUniqueKey(Livre.LIVRE, DSL.name("CONSTRAINT_4"), new TableField[] { Livre.LIVRE.ID }, true);
-    public static final UniqueKey<ProfilRecord> CONSTRAINT_8 = Internal.createUniqueKey(Profil.PROFIL, DSL.name("CONSTRAINT_8"), new TableField[] { Profil.PROFIL.ID }, true);
+    public static final UniqueKey<ApplicationUserRecord> USER_PKEY = Internal.createUniqueKey(ApplicationUser.APPLICATION_USER, DSL.name("user_pkey"), new TableField[] { ApplicationUser.APPLICATION_USER.ID }, true);
+    public static final UniqueKey<AuteurRecord> AUTEUR_PKEY = Internal.createUniqueKey(Auteur.AUTEUR, DSL.name("auteur_pkey"), new TableField[] { Auteur.AUTEUR.ID }, true);
+    public static final UniqueKey<LivreRecord> LIVRE_NOM_KEY = Internal.createUniqueKey(Livre.LIVRE, DSL.name("livre_nom_key"), new TableField[] { Livre.LIVRE.NOM }, true);
+    public static final UniqueKey<LivreRecord> LIVRE_PKEY = Internal.createUniqueKey(Livre.LIVRE, DSL.name("livre_pkey"), new TableField[] { Livre.LIVRE.ID }, true);
+    public static final UniqueKey<ProfilRecord> PROFIL_PKEY = Internal.createUniqueKey(Profil.PROFIL, DSL.name("profil_pkey"), new TableField[] { Profil.PROFIL.ID }, true);
+    public static final UniqueKey<RoleRecord> ROLE_PKEY = Internal.createUniqueKey(Role.ROLE, DSL.name("role_pkey"), new TableField[] { Role.ROLE.ID }, true);
+    public static final UniqueKey<StockRecord> STOCK_PKEY = Internal.createUniqueKey(Stock.STOCK, DSL.name("stock_pkey"), new TableField[] { Stock.STOCK.ID }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<LivreRecord, AuteurRecord> FK_LIVRE_AUTEUR = Internal.createForeignKey(Livre.LIVRE, DSL.name("FK_LIVRE_AUTEUR"), new TableField[] { Livre.LIVRE.ID_AUTEUR }, Keys.CONSTRAINT_7, new TableField[] { Auteur.AUTEUR.ID }, true);
-    public static final ForeignKey<LivreRecord, ProfilRecord> FK_LIVRE_PROFILE = Internal.createForeignKey(Livre.LIVRE, DSL.name("FK_LIVRE_PROFILE"), new TableField[] { Livre.LIVRE.ID_PROFILE }, Keys.CONSTRAINT_8, new TableField[] { Profil.PROFIL.ID }, true);
+    public static final ForeignKey<ActionRecord, ApplicationUserRecord> ACTION__FK_ACTION_USER = Internal.createForeignKey(Action.ACTION, DSL.name("FK_action_user"), new TableField[] { Action.ACTION.ID_USER }, Keys.USER_PKEY, new TableField[] { ApplicationUser.APPLICATION_USER.ID }, true);
+    public static final ForeignKey<LivreRecord, AuteurRecord> LIVRE__FK_LIVRE_AUTEUR = Internal.createForeignKey(Livre.LIVRE, DSL.name("FK_livre_auteur"), new TableField[] { Livre.LIVRE.ID_AUTEUR }, Keys.AUTEUR_PKEY, new TableField[] { Auteur.AUTEUR.ID }, true);
+    public static final ForeignKey<LivreRecord, ProfilRecord> LIVRE__FK_LIVRE_PROFIL = Internal.createForeignKey(Livre.LIVRE, DSL.name("FK_livre_profil"), new TableField[] { Livre.LIVRE.ID_PROFIL }, Keys.PROFIL_PKEY, new TableField[] { Profil.PROFIL.ID }, true);
+    public static final ForeignKey<LivreRecord, StockRecord> LIVRE__ID_STOCK = Internal.createForeignKey(Livre.LIVRE, DSL.name("id_stock"), new TableField[] { Livre.LIVRE.ID_STOCK }, Keys.STOCK_PKEY, new TableField[] { Stock.STOCK.ID }, true);
+    public static final ForeignKey<UserLivreRecord, LivreRecord> USER_LIVRE__FK_USER_LIVRE_LIVRE = Internal.createForeignKey(UserLivre.USER_LIVRE, DSL.name("FK_user_livre_livre"), new TableField[] { UserLivre.USER_LIVRE.ID_LIVRE }, Keys.LIVRE_PKEY, new TableField[] { Livre.LIVRE.ID }, true);
+    public static final ForeignKey<UserLivreRecord, ApplicationUserRecord> USER_LIVRE__FK_USER_LIVRE_USER = Internal.createForeignKey(UserLivre.USER_LIVRE, DSL.name("FK_user_livre_user"), new TableField[] { UserLivre.USER_LIVRE.ID_USER }, Keys.USER_PKEY, new TableField[] { ApplicationUser.APPLICATION_USER.ID }, true);
+    public static final ForeignKey<UserRoleRecord, RoleRecord> USER_ROLE__FK_USER_ROLE_ROLE = Internal.createForeignKey(UserRole.USER_ROLE, DSL.name("FK_user_role_role"), new TableField[] { UserRole.USER_ROLE.ID_ROLE }, Keys.ROLE_PKEY, new TableField[] { Role.ROLE.ID }, true);
+    public static final ForeignKey<UserRoleRecord, ApplicationUserRecord> USER_ROLE__FK_USER_ROLE_USER = Internal.createForeignKey(UserRole.USER_ROLE, DSL.name("FK_user_role_user"), new TableField[] { UserRole.USER_ROLE.ID_USER }, Keys.USER_PKEY, new TableField[] { ApplicationUser.APPLICATION_USER.ID }, true);
 }

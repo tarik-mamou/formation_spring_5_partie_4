@@ -4,29 +4,65 @@
 package generation;
 
 
+import generation.tables.Action;
+import generation.tables.ApplicationUser;
 import generation.tables.Auteur;
 import generation.tables.Livre;
 import generation.tables.Profil;
+import generation.tables.Role;
+import generation.tables.Stock;
+import generation.tables.UserLivre;
+import generation.tables.UserRole;
 
 
 /**
- * Convenience access to all tables in PUBLIC.
+ * Convenience access to all tables in public.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
 
     /**
-     * The table <code>PUBLIC.AUTEUR</code>.
+     * The table <code>public.action</code>.
+     */
+    public static final Action ACTION = Action.ACTION;
+
+    /**
+     * The table <code>public.application_user</code>.
+     */
+    public static final ApplicationUser APPLICATION_USER = ApplicationUser.APPLICATION_USER;
+
+    /**
+     * The table <code>public.auteur</code>.
      */
     public static final Auteur AUTEUR = Auteur.AUTEUR;
 
     /**
-     * The table <code>PUBLIC.LIVRE</code>.
+     * The table <code>public.livre</code>.
      */
     public static final Livre LIVRE = Livre.LIVRE;
 
     /**
-     * The table <code>PUBLIC.PROFIL</code>.
+     * The table <code>public.profil</code>.
      */
     public static final Profil PROFIL = Profil.PROFIL;
+
+    /**
+     * The table <code>public.role</code>.
+     */
+    public static final Role ROLE = Role.ROLE;
+
+    /**
+     * The table <code>public.stock</code>.
+     */
+    public static final Stock STOCK = Stock.STOCK;
+
+    /**
+     * The table <code>public.user_livre</code>.
+     */
+    public static final UserLivre USER_LIVRE = UserLivre.USER_LIVRE;
+
+    /**
+     * The table <code>public.user_role</code>.
+     */
+    public static final UserRole USER_ROLE = UserRole.USER_ROLE;
 }

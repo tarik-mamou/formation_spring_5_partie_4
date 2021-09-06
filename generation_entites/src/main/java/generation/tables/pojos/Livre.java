@@ -19,7 +19,9 @@ public class Livre implements Serializable {
     private String  nom;
     private String  langue;
     private Integer idAuteur;
-    private Integer idProfile;
+    private Integer idProfil;
+    private Integer idStock;
+    private Integer prix;
 
     public Livre() {}
 
@@ -28,7 +30,9 @@ public class Livre implements Serializable {
         this.nom = value.nom;
         this.langue = value.langue;
         this.idAuteur = value.idAuteur;
-        this.idProfile = value.idProfile;
+        this.idProfil = value.idProfil;
+        this.idStock = value.idStock;
+        this.prix = value.prix;
     }
 
     public Livre(
@@ -36,83 +40,115 @@ public class Livre implements Serializable {
         String  nom,
         String  langue,
         Integer idAuteur,
-        Integer idProfile
+        Integer idProfil,
+        Integer idStock,
+        Integer prix
     ) {
         this.id = id;
         this.nom = nom;
         this.langue = langue;
         this.idAuteur = idAuteur;
-        this.idProfile = idProfile;
+        this.idProfil = idProfil;
+        this.idStock = idStock;
+        this.prix = prix;
     }
 
     /**
-     * Getter for <code>PUBLIC.LIVRE.ID</code>.
+     * Getter for <code>public.livre.id</code>.
      */
     public Integer getId() {
         return this.id;
     }
 
     /**
-     * Setter for <code>PUBLIC.LIVRE.ID</code>.
+     * Setter for <code>public.livre.id</code>.
      */
     public void setId(Integer id) {
         this.id = id;
     }
 
     /**
-     * Getter for <code>PUBLIC.LIVRE.NOM</code>.
+     * Getter for <code>public.livre.nom</code>.
      */
     public String getNom() {
         return this.nom;
     }
 
     /**
-     * Setter for <code>PUBLIC.LIVRE.NOM</code>.
+     * Setter for <code>public.livre.nom</code>.
      */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
     /**
-     * Getter for <code>PUBLIC.LIVRE.LANGUE</code>.
+     * Getter for <code>public.livre.langue</code>.
      */
     public String getLangue() {
         return this.langue;
     }
 
     /**
-     * Setter for <code>PUBLIC.LIVRE.LANGUE</code>.
+     * Setter for <code>public.livre.langue</code>.
      */
     public void setLangue(String langue) {
         this.langue = langue;
     }
 
     /**
-     * Getter for <code>PUBLIC.LIVRE.ID_AUTEUR</code>.
+     * Getter for <code>public.livre.id_auteur</code>.
      */
     public Integer getIdAuteur() {
         return this.idAuteur;
     }
 
     /**
-     * Setter for <code>PUBLIC.LIVRE.ID_AUTEUR</code>.
+     * Setter for <code>public.livre.id_auteur</code>.
      */
     public void setIdAuteur(Integer idAuteur) {
         this.idAuteur = idAuteur;
     }
 
     /**
-     * Getter for <code>PUBLIC.LIVRE.ID_PROFILE</code>.
+     * Getter for <code>public.livre.id_profil</code>.
      */
-    public Integer getIdProfile() {
-        return this.idProfile;
+    public Integer getIdProfil() {
+        return this.idProfil;
     }
 
     /**
-     * Setter for <code>PUBLIC.LIVRE.ID_PROFILE</code>.
+     * Setter for <code>public.livre.id_profil</code>.
      */
-    public void setIdProfile(Integer idProfile) {
-        this.idProfile = idProfile;
+    public void setIdProfil(Integer idProfil) {
+        this.idProfil = idProfil;
+    }
+
+    /**
+     * Getter for <code>public.livre.id_stock</code>.
+     */
+    public Integer getIdStock() {
+        return this.idStock;
+    }
+
+    /**
+     * Setter for <code>public.livre.id_stock</code>.
+     */
+    public void setIdStock(Integer idStock) {
+        this.idStock = idStock;
+    }
+
+    /**
+     * Getter for <code>public.livre.prix</code>.
+     */
+    public Integer getPrix() {
+        return this.prix;
+    }
+
+    /**
+     * Setter for <code>public.livre.prix</code>.
+     */
+    public void setPrix(Integer prix) {
+        this.prix = prix;
     }
 
     @Override
@@ -123,7 +159,9 @@ public class Livre implements Serializable {
         sb.append(", ").append(nom);
         sb.append(", ").append(langue);
         sb.append(", ").append(idAuteur);
-        sb.append(", ").append(idProfile);
+        sb.append(", ").append(idProfil);
+        sb.append(", ").append(idStock);
+        sb.append(", ").append(prix);
 
         sb.append(")");
         return sb.toString();

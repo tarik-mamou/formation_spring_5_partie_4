@@ -43,9 +43,9 @@
             <version>${joo.local.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.200</version>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.23</version>
         </dependency>
     </dependencies>
 
@@ -87,10 +87,10 @@
                 <configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.14.13.xsd">
                     <!-- Configure the database connection here -->
                     <jdbc>
-                        <driver>org.h2.Driver</driver>
-                        <url>jdbc:h2:file:C:/Users/mamou/Documents/formations/H2_database_libraire</url>
-                        <user>sa</user>
-                        <password>password</password>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://localhost:5432/formation_spring</url>
+                        <user>postgres</user>
+                        <password>tarik</password>
                     </jdbc>
 
                     <!-- Generator parameters -->
@@ -111,11 +111,11 @@
                         <database>
                             <!-- The database type. The format here is:
                                  org.jooq.meta.[database].[database]Database -->
-                            <name>org.jooq.meta.h2.H2Database</name>
+                            <name>org.jooq.meta.postgres.PostgresDatabase</name>
 
                             <!-- The database schema (or in the absence of schema support, in your RDBMS this
                                  can be the owner, user, database name) to be generated -->
-                            <inputSchema>PUBLIC</inputSchema>
+                            <inputSchema>public</inputSchema>
 
                             <!-- All elements that are generated from your schema
                                  (A Java regular expression. Use the pipe to separate several expressions)

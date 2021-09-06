@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Row3;
@@ -36,7 +37,7 @@ public class Profil extends TableImpl<ProfilRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>PUBLIC.PROFIL</code>
+     * The reference instance of <code>public.profil</code>
      */
     public static final Profil PROFIL = new Profil();
 
@@ -49,19 +50,19 @@ public class Profil extends TableImpl<ProfilRecord> {
     }
 
     /**
-     * The column <code>PUBLIC.PROFIL.ID</code>.
+     * The column <code>public.profil.id</code>.
      */
-    public final TableField<ProfilRecord, Integer> ID = createField(DSL.name("ID"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ProfilRecord, Integer> ID = createField(DSL.name("id"), SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>PUBLIC.PROFIL.DATE_PUBLICATION</code>.
+     * The column <code>public.profil.date_publication</code>.
      */
-    public final TableField<ProfilRecord, LocalDate> DATE_PUBLICATION = createField(DSL.name("DATE_PUBLICATION"), SQLDataType.LOCALDATE, this, "");
+    public final TableField<ProfilRecord, LocalDate> DATE_PUBLICATION = createField(DSL.name("date_publication"), SQLDataType.LOCALDATE, this, "");
 
     /**
-     * The column <code>PUBLIC.PROFIL.GENRE</code>.
+     * The column <code>public.profil.genre</code>.
      */
-    public final TableField<ProfilRecord, String> GENRE = createField(DSL.name("GENRE"), SQLDataType.VARCHAR(64), this, "");
+    public final TableField<ProfilRecord, String> GENRE = createField(DSL.name("genre"), SQLDataType.VARCHAR(64), this, "");
 
     private Profil(Name alias, Table<ProfilRecord> aliased) {
         this(alias, aliased, null);
@@ -72,24 +73,24 @@ public class Profil extends TableImpl<ProfilRecord> {
     }
 
     /**
-     * Create an aliased <code>PUBLIC.PROFIL</code> table reference
+     * Create an aliased <code>public.profil</code> table reference
      */
     public Profil(String alias) {
         this(DSL.name(alias), PROFIL);
     }
 
     /**
-     * Create an aliased <code>PUBLIC.PROFIL</code> table reference
+     * Create an aliased <code>public.profil</code> table reference
      */
     public Profil(Name alias) {
         this(alias, PROFIL);
     }
 
     /**
-     * Create a <code>PUBLIC.PROFIL</code> table reference
+     * Create a <code>public.profil</code> table reference
      */
     public Profil() {
-        this(DSL.name("PROFIL"), null);
+        this(DSL.name("profil"), null);
     }
 
     public <O extends Record> Profil(Table<O> child, ForeignKey<O, ProfilRecord> key) {
@@ -102,13 +103,18 @@ public class Profil extends TableImpl<ProfilRecord> {
     }
 
     @Override
+    public Identity<ProfilRecord, Integer> getIdentity() {
+        return (Identity<ProfilRecord, Integer>) super.getIdentity();
+    }
+
+    @Override
     public UniqueKey<ProfilRecord> getPrimaryKey() {
-        return Keys.CONSTRAINT_8;
+        return Keys.PROFIL_PKEY;
     }
 
     @Override
     public List<UniqueKey<ProfilRecord>> getKeys() {
-        return Arrays.<UniqueKey<ProfilRecord>>asList(Keys.CONSTRAINT_8);
+        return Arrays.<UniqueKey<ProfilRecord>>asList(Keys.PROFIL_PKEY);
     }
 
     @Override

@@ -24,42 +24,42 @@ public class ProfilRecord extends UpdatableRecordImpl<ProfilRecord> implements R
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>PUBLIC.PROFIL.ID</code>.
+     * Setter for <code>public.profil.id</code>.
      */
     public void setId(Integer value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>PUBLIC.PROFIL.ID</code>.
+     * Getter for <code>public.profil.id</code>.
      */
     public Integer getId() {
         return (Integer) get(0);
     }
 
     /**
-     * Setter for <code>PUBLIC.PROFIL.DATE_PUBLICATION</code>.
+     * Setter for <code>public.profil.date_publication</code>.
      */
     public void setDatePublication(LocalDate value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>PUBLIC.PROFIL.DATE_PUBLICATION</code>.
+     * Getter for <code>public.profil.date_publication</code>.
      */
     public LocalDate getDatePublication() {
         return (LocalDate) get(1);
     }
 
     /**
-     * Setter for <code>PUBLIC.PROFIL.GENRE</code>.
+     * Setter for <code>public.profil.genre</code>.
      */
     public void setGenre(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>PUBLIC.PROFIL.GENRE</code>.
+     * Getter for <code>public.profil.genre</code>.
      */
     public String getGenre() {
         return (String) get(2);
